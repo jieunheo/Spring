@@ -1,0 +1,27 @@
+package com.ezen.myapp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+public class BoardController {
+
+	@RequestMapping(value="/board/boardWrite.do")
+	public String boardWrite() {
+		
+		/* boardWrite.jsp 페이지로 이동 */
+		return "boardWrite";
+		
+	}
+	
+	@RequestMapping(value="/board/boardWriteAction.do")
+	public String boardWriteAction() {
+		
+		/* boardWriteAction 처리 후 boardList 페이지로 이동 */
+		
+		return "redirect:/board/boardList.do";
+		
+	}
+	
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- DB 드라이버 연결 -->
+	<!-- pom.xml 파일에서 mysql dependency 추가 후 진행 -->
+	<!-- 스프링 설정 파일 -->
+	<bean id="" class="">
+	
+	
+	
+	</bean>
+	
+</beans>
