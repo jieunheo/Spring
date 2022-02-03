@@ -11,7 +11,7 @@ public class BoardController {
 	@RequestMapping(value="/board/boardWrite.do")
 	public String boardWrite() {
 		
-		/* boardWrite.jsp ÆäÀÌÁö·Î ÀÌµ¿ */
+		/* boardWrite.jsp í˜ì´ì§€ë¡œ ì´ë™ */
 		return "boardWrite";
 		
 	}
@@ -19,20 +19,20 @@ public class BoardController {
 	@RequestMapping(value="/board/boardWriteAction.do")
 	public String boardWriteAction(@RequestParam("subject") String subject) {
 		
-		/* boardWriteAction Ã³¸® ÈÄ boardList ÆäÀÌÁö·Î ÀÌµ¿ */
+		/* boardWriteAction ì²˜ë¦¬ í›„ boardList í˜ì´ì§€ë¡œ ì´ë™ */
 		
-		//1. boardWriteAction Ã³¸®
-		//	1-1. ÆÄ¶ó¹ÌÅÍ(¸Å°³º¯¼ö) ¹Ş±â -> @RequestParam("subject") String subject
+		//1. boardWriteAction ì²˜ë¦¬
+		//	1-1. íŒŒë¼ë¯¸í„°(ë§¤ê°œë³€ìˆ˜) ë°›ê¸° -> @RequestParam("subject") String subject
 		
-		//	1-2. °ªÀ» DB¿¡ ÀÔ·Â(Ã³¸®)
-		BoardDao db   = new BoardDao(); //°´Ã¼ »ı¼º
-		int      exec = db.insertBoard(subject); //±Û Ãß°¡
+		//	1-2. ê°’ì„ DBì— ì…ë ¥(ì²˜ë¦¬)
+		BoardDao db   = new BoardDao(); //ê°ì²´ ìƒì„±
+		int      exec = db.insertBoard(subject); //ê¸€ ì¶”ê°€
 		
-		//	1-3. ÆäÀÌÁö ÀÌµ¿ (sendRedirect)
-		if(exec != 0) { response.sendRedirect(pj+"/board/boardList.do"); } //url ¿ÜºÎÀÌµ¿
-		else { response.sendRedirect(pj+"/board/boardWrite.do"); } //url ³»ºÎÀÌµ¿
+		//	1-3. í˜ì´ì§€ ì´ë™ (sendRedirect)
+		if(exec != 0) { response.sendRedirect(pj+"/board/boardList.do"); } //url ì™¸ë¶€ì´ë™
+		else { response.sendRedirect(pj+"/board/boardWrite.do"); } //url ë‚´ë¶€ì´ë™
 		
-		//2. redirect: ¸¦ ÀÌ¿ëÇÏ¿© sendRedirect ½ÇÇà
+		//2. redirect: ë¥¼ ì´ìš©í•˜ì—¬ sendRedirect ì‹¤í–‰
 		return "redirect:/board/boardList.do";
 		
 	}

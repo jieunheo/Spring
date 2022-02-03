@@ -1,0 +1,166 @@
+package model;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import dbconn.DbConn;
+
+public class BoardDao /* extends Object //Object 상속. 기본값으로 생략되어 있음 */ {
+
+	DbConn            db;    //DbConn 객체
+	
+	Connection        conn;  //connection
+	PreparedStatement pstmt; //PreparedStatement
+	ResultSet         rs;    //ResultSet
+	
+	/* DB 연결 */
+	public BoardDao() {
+		
+		/* super(); //부모의 생성자를 실행. 기본값으로 생략되어 있음 */
+		db   = new DbConn();       //DbConn 객체 생성
+		conn = db.getConnection(); //DB 연결
+		
+	}
+	
+	/* INSERT */
+	public int insertBoard(String subject) {
+		
+		//1. 결과를 담을 변수 생성
+		int exec = 0;
+		
+		//2. 쿼리문 작성
+		String sql = "INSERT INTO boardtest(subject) values(?)";
+		try {
+			
+			pstmt = conn.prepareStatement(sql); //쿼리문 담기
+			pstmt.setString(1, subject); //해당 ?에 값 삽입
+			
+			//3. 쿼리문 실행
+			exec = pstmt.executeUpdate(); //실행 후 결과 값(성공:1, 실패:0)
+			
+			//4. pstmt 닫기
+			pstmt.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				//5. db 닫기
+				conn.close();
+				
+			} catch (SQLException e) { e.printStackTrace(); }
+			
+		}
+		
+		//6. 결과값 리턴
+		return exec;
+	}
+	
+	/* SELECT All */
+	public ArrayList<BoardVo> selectAllBoard() {
+		
+		//1. 결과를 담을 변수 생성
+		ArrayList<BoardVo> alist = null;
+		
+		//2. 쿼리문 작성
+		String sql = "SELECT * FROM boardtest ORDER BY bidx ASC";
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			//3. 쿼리문 실행
+			rs = pstmt.executeQuery(); //실행 후 결과 담기
+			
+			//4. 값이 있는지 확인
+			while(rs.next()) {
+				
+				//alist가 생성되지 않았으면 생성
+				if(alist == null) alist = new ArrayList<BoardVo>();
+				
+				//vo객체에 값 넣기
+				BoardVo vo = new BoardVo();
+				vo.setBidx(rs.getInt("bidx"));
+				vo.setSubject(rs.getString("subject"));
+				
+				//alist에 vo 추가
+				alist.add(vo);
+				
+			}
+			
+			//5. pstmt 닫기
+			pstmt.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				//6. db 닫기
+				conn.close();
+				
+			} catch (SQLException e) { e.printStackTrace(); }
+			
+		}
+		
+		//6. 결과값 리턴
+		return alist;
+		
+	}
+	
+	/* SELECT */
+	public BoardVo selectOneBoard(String bidx) {
+		
+		//1. 결과를 담을 변수 생성
+		BoardVo vo = null;
+		
+		//2. 쿼리문 작성
+		String sql = "SELECT * FROM boardtest WHERE bidx = ?";
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bidx);
+			
+			//3. 쿼리문 실행
+			rs = pstmt.executeQuery(); //실행 후 결과 담기
+			
+			//4. 값이 있는지 확인
+			if(rs.next()) {
+				
+				vo = new BoardVo();
+				//값 넣기
+				vo.setBidx(rs.getInt("bidx"));
+				vo.setSubject(rs.getString("subject"));
+				
+			}
+			
+			//5. pstmt 닫기
+			pstmt.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				//6. db 닫기
+				conn.close();
+				
+			} catch (SQLException e) { e.printStackTrace(); }
+			
+		}
+		
+		//6. 결과값 리턴
+		return vo;
+		
+	}
+	
+}
