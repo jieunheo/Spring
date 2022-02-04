@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Service;
 
-@Service
+/*  */
+@Service("bd")
 public class BoardDao /* extends Object //Object 상속. 기본값으로 생략되어 있음 */ {
 	
 	Connection        conn;  //connection
@@ -16,14 +17,15 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 
 	/* bean 객체로 등록된 클래스를 이곳으로 주입 */
 	@Autowired
-	DriverManagerDataSource dataSource; //dataSource 객체
-	
-	/* DB 연결 */
-	public BoardDao() {
+	public BoardDao(DriverManagerDataSource dataSource) {
+
+		System.out.println("dataSource: "+dataSource);
 		
 		/* super(); //부모의 생성자를 실행. 기본값으로 생략되어 있음 */
 		try {
 			
+			/* DB 연결 */	
+			//외부에서 만들어진 데이터를 가져와 연결함
 			conn = dataSource.getConnection(); //DB 연결
 			
 		} catch (SQLException e) { e.printStackTrace(); }
@@ -45,6 +47,7 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 			
 			//3. 쿼리문 실행
 			exec = pstmt.executeUpdate(); //실행 후 결과 값(성공:1, 실패:0)
+			System.out.println(pstmt);
 			
 			//4. pstmt 닫기
 			pstmt.close();
