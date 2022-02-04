@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,29 +44,82 @@ public class BoardController {
 		if(exec != 0) return "redirect:/index.jsp"; //url 외부이동
 		else          return "boardWrite";          //url 내부이동
 		
-		
-		
-		
 	}
 	
 	@RequestMapping(value="/board/boardList.do")
-	public String boardList() {
+	public String boardList(Model model) {
 		
 		/* boardList.jsp 페이지로 이동 */
+		
 		/* 글목록 뿌려주기 */
 		//1. 전체 데이터 가져오기
-		//bd = new BoardDao(); //객체 생성
-		//ArrayList<BoardVo> alist = bd.selectAllBoard(); //글목록 보기
+		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
+		ArrayList<BoardVo> alist = bd.selectAllBoard(); //글목록 보기
 		
 		//2. request에 값 담기
-		//request.setAttribute("alist", alist);
+		model.addAttribute("alist", alist);
 		
 		//3. 글목록 페이지로 이동 (foward) - url 내부이동
-		//rd = request.getRequestDispatcher("/boardList.jsp");
-		//rd.forward(request, response);
-		
-		return "redirect:/index.jsp";
+		return "boardList";
 	
+	}
+	
+	@RequestMapping(value="/board/boardContents.do")
+	public String boardContents(@RequestParam("bidx") String bidx, Model model) {
+		
+		/* boardContents.jsp 페이지로 이동 */
+		/* 글내용 뿌려주기 */
+		//1. 값 받기
+		//String bidx = request.getParameter("bidx");
+		System.out.println(bidx);
+		
+		//2. 데이터 가져오기
+		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
+		BoardVo  vo = bd.selectOneBoard(bidx); //글 보기
+		
+		//3. 결과 확인 후 화면 이동
+		if(vo != null) { //값이 비어있지 않으면
+			
+			//request에 값 담기
+			model.addAttribute("vo", vo);
+			
+			//3. 글목록 페이지로 이동 (foward) - url 내부이동
+			return "boardContents";
+			
+		} else {         //값이 비어있으면
+			
+			//글목록 페이지로 이동 (foward) - url 내부이동
+			return "boardList";
+			
+		}
+
+	}
+	
+	@RequestMapping(value="/board/boardDelete.do")
+	public String boardDelete(@RequestParam("vo") BoardVo vo) {
+		
+		/* 글 삭제 */
+		//1. 값 받기
+		//String bidx = request.getParameter("bidx");
+		String bidx = Integer.toString(vo.getBidx());
+		System.out.println("bidx: "+bidx);
+		
+		//2. 데이터 가져오기
+		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
+		
+		//3. 결과에 따른 화면 이동
+		if(bd.deleteBoard(bidx)) {
+			
+			//삭제 되었으면
+			return "boardList";
+			
+		} else {
+			
+			//삭제되지 않았으면
+			return "redirect:/index.jsp";
+			
+		}
+		
 	}
 	
 }
