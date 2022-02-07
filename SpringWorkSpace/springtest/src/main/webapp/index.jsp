@@ -18,6 +18,7 @@
 		<br><br>
 		<a href="<%=request.getContextPath()%>/member/memberList.do">회원목록</a>
 		<br><br>
-		<a href="<%=request.getContextPath()%>/member/login.do">로그인</a>
+		<a href="<%=request.getContextPath()%>/member/login.do">로그인</a>&emsp;
+		<a href="<%=request.getContextPath()%>/member/join.do">회원가입</a>
 	</body>
 </html>
