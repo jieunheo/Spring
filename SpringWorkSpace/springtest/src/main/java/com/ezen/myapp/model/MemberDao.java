@@ -165,23 +165,17 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			//3. 쿼리문 실행
+			System.out.println(memberName + ", " + memberId + ", " + memberPw);
 			pstmt.setString(1, memberName);
 			pstmt.setString(2, memberId);
 			pstmt.setString(3, memberPw);
-			rs = pstmt.executeQuery(); //실행 후 결과 담기
+			System.out.println(pstmt);
+			boolean result = pstmt.execute(); //실행 후 결과 담기
 			
 			//4. 값이 있는지 확인
-			if(rs.next()) {
+			if(result) {
 
-				//vo객체에 값 넣기
-				vo = new MemberVo();
-				
-				vo.setMidx(rs.getInt("midx"));
-				vo.setMemberId(rs.getString("memberId"));
-				vo.setMemberPw(rs.getString("memberPw"));
-				vo.setMemberName(rs.getString("memberName"));
-				vo.setWriteday(rs.getString("writeday"));
-				vo.setDelYN(rs.getString("delYN"));
+				vo = loginMember(memberId, memberPw);
 				
 			}
 			

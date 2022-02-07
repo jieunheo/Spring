@@ -1,0 +1,12 @@
+package com.ezen.myapp.persistance;
+
+import java.util.ArrayList;
+
+import com.ezen.myapp.model.BoardVo;
+
+public interface BoardService {
+
+	public int insertBoard(String subject);
+	public ArrayList<BoardVo> selectAllBoard();
+
+}

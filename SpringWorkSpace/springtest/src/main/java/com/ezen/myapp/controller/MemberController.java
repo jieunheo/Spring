@@ -100,7 +100,7 @@ public class MemberController {
 		
 		/* join 실행 */
 		//1. 값을 DB에서 확인(처리)
-		MemberVo  join = md.joinMember(memberName, memberId, memberPw); //login
+		MemberVo  join = md.joinMember(memberName, memberId, memberPw); //join
 
 		//2. 결과 확인 후 화면 이동
 		if(join != null) { //값이 있다면
