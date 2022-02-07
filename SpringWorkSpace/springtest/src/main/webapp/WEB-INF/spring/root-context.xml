@@ -27,15 +27,27 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<!-- DB 드라이버 연결 -->
-	<!-- pom.xml 파일에서 mysql dependency 추가 후 진행 -->
 	<!-- 스프링 설정 파일 -->
 	<!-- bean: 스프링에게 객체 생성 요청 -->
+	
+	<!-- pom.xml 파일에서 mysql dependency 추가 후 진행 -->
+	<!-- DB 드라이버 연결 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/boarddb?useSSL=false&amp;serverTimezone=UTC"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="ezen"></property>
+	</bean>
+	
+	<!-- mybatis 추가 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="cdataSource"></property>
+		<property name="mapperLocations" value="classpath:mappers/*.xml"></property>
+		<property name="configLocation" value="classpath:config/mybatis_config.xml"></property>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
 </beans>

@@ -22,7 +22,13 @@ import com.ezen.myapp.model.MemberVo;
 @Controller
 public class MemberController {
 	
-	/* 객체로 생성된 주소를 이곳에 주입 */
+	/* 
+	 * 객체로 생성된 주소를 이곳에 주입
+	 * 
+	 * Resource로 사용 가능
+	 * 	Autowired는 타입으로
+	 * 	Resource는 이름으로 연결
+	 */
 	@Autowired
 	MemberDao md;
 

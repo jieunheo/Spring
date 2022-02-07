@@ -227,3 +227,12 @@
 0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:37:57 +0900] "GET /myapp/member/login.do HTTP/1.1" 200 700
 0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:38:01 +0900] "POST /myapp/member/loginAction.do HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:38:01 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 504
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:50:43 +0900] "GET /myapp/member/login.do HTTP/1.1" 200 700
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:18 +0900] "GET /myapp/member/login.do HTTP/1.1" 200 700
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:18 +0900] "GET /favicon.ico HTTP/1.1" 404 761
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:19 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:20 +0900] "GET /myapp/member/join.do HTTP/1.1" 200 802
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:36 +0900] "POST /myapp/member/joinAction.do HTTP/1.1" 200 700
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:38 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:40 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [04/Feb/2022:12:56:40 +0900] "GET /favicon.ico HTTP/1.1" 404 761
