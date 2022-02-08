@@ -1,9 +1,0 @@
-package com.ezen.myapp.controller;
-
-import org.springframework.stereotype.Controller;
-
-/* 컨트롤러로 등록 */
-@Controller
-public class MemberController {
-
-}

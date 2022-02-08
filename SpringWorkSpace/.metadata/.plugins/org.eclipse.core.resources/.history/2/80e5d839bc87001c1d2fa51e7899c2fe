@@ -1,7 +1,0 @@
-package com.ezen.myapp.persistance;
-
-public interface BoardService {
-
-	public int insert;
-
-}
