@@ -170,10 +170,10 @@ public class MemberDao {
 			pstmt.setString(2, memberId);
 			pstmt.setString(3, memberPw);
 			System.out.println(pstmt);
-			boolean result = pstmt.execute(); //실행 후 결과 담기
+			int result = pstmt.executeUpdate(); //실행 후 결과 담기
 			
 			//4. 값이 있는지 확인
-			if(result) {
+			if(result != 0) {
 
 				vo = loginMember(memberId, memberPw);
 				

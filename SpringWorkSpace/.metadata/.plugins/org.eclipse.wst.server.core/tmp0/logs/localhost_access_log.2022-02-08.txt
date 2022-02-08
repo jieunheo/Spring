@@ -1,0 +1,14 @@
+127.0.0.1 - - [08/Feb/2022:09:44:51 +0900] "GET / HTTP/1.1" 404 750
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:44:51 +0900] "GET /myapp/ HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:44:51 +0900] "GET /favicon.ico HTTP/1.1" 404 761
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:44:57 +0900] "GET /myapp/board/boardList.do HTTP/1.1" 200 3019
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:44:58 +0900] "GET /myapp/board/boardContents.do?bidx=4 HTTP/1.1" 200 607
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:45:02 +0900] "GET /myapp/board/boardContents.do?bidx=19 HTTP/1.1" 200 607
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:45:06 +0900] "GET /myapp/board/boardContents.do?bidx=14 HTTP/1.1" 200 591
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:48:42 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:48:43 +0900] "GET /myapp/member/login.do HTTP/1.1" 200 700
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:48:45 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 549
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:48:46 +0900] "GET /myapp/member/join.do HTTP/1.1" 200 802
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:09:49:45 +0900] "POST /myapp/member/joinAction.do HTTP/1.1" 200 700
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:10:18:49 +0900] "POST /myapp/member/loginAction.do HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [08/Feb/2022:10:18:50 +0900] "GET /myapp/index.jsp HTTP/1.1" 200 562
