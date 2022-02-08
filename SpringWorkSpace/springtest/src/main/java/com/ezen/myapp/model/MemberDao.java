@@ -27,7 +27,7 @@ public class MemberDao {
 	PreparedStatement pstmt; //PreparedStatement
 	ResultSet         rs;    //ResultSet
 	
-	MemberService      bs;
+	MemberService      ms;
 
 	/* bean 객체로 등록된 클래스를 이곳으로 주입 */
 	@Autowired
@@ -39,7 +39,7 @@ public class MemberDao {
 		
 		/* DB 연결 */	
 		//외부에서 만들어진 데이터를 가져와 연결함
-		bs = sqlSession.getMapper(MemberService.class);
+		ms = sqlSession.getMapper(MemberService.class);
 		
 	}
 	
@@ -47,7 +47,7 @@ public class MemberDao {
 	public ArrayList<MemberVo> selectAllMember() {
 		
 		//1. 결과를 담을 변수 생성
-		ArrayList<MemberVo> alist = bs.selectAllMember();
+		ArrayList<MemberVo> alist = ms.selectAllMember();
 		
 		return alist;
 		
@@ -111,7 +111,7 @@ public class MemberDao {
 	/* Login */
 	public MemberVo loginMember(String memberId, String memberPw) {
 		
-		MemberVo vo = bs.loginMember(memberId, memberPw);
+		MemberVo vo = ms.loginMember(memberId, memberPw);
 		
 		return vo;
 		
@@ -174,9 +174,9 @@ public class MemberDao {
 	public MemberVo joinMember(String memberName, String memberId, String memberPw) {
 		
 		MemberVo vo = null;
-		int result = bs.joinMember(memberName, memberId, memberPw);
+		int result = ms.joinMember(memberName, memberId, memberPw);
 		
-		if(result != 0) vo = bs.loginMember(memberId, memberPw);
+		if(result != 0) vo = ms.loginMember(memberId, memberPw);
 		
 		return vo;
 	}
