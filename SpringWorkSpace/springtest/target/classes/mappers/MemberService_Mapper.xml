@@ -17,11 +17,5 @@
 	<select id="selectAllMember" resultType="mv">
 		SELECT * FROM member ORDER BY midx ASC
 	</select>
-	
-	<!--
-	<delete id="deleteBoard" parameterType="String">
-		SELECT * FROM boardtest WHERE bidx = #{bidx}
-	</delete>
-	-->
 
 </mapper>

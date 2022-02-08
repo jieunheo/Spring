@@ -204,6 +204,23 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 //		
 //	}
 	
+	/* UPDATE */
+	public BoardVo boardModify(String bidx, String subject) {
+		
+		BoardVo result = null;
+		
+		BoardVo vo = bs.selectOneBoard(bidx);
+		
+		if(vo != null) {
+			
+			if(bs.boardModify(bidx, subject) != 0) result = bs.selectOneBoard(bidx);
+			
+		}
+		
+		return result;
+		
+	}
+	
 	/* DELETE */
 	public int deleteBoard(String bidx) {
 		
@@ -221,53 +238,5 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 		return result;
 		
 	}
-//	public boolean deleteBoard(String bidx) {
-//		
-//		//1. 값이 있는지 확인
-//		String sql = "SELECT * FROM boardtest WHERE bidx = ?";
-//		try {
-//			
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, bidx);
-//			
-//			//2. 쿼리문 실행
-//			rs = pstmt.executeQuery(); //실행 후 결과 담기
-//			
-//			//3. 결과의 따른 return
-//			if(rs.next()) {
-//				
-//				sql = "DELETE boardtest WHERE bidx = ?";
-//				pstmt = conn.prepareStatement(sql);
-//				pstmt.setString(1, bidx);
-//
-//				//5. pstmt 닫기
-//				pstmt.close();
-//				return true;
-//				
-//			} else {
-//
-//				//5. pstmt 닫기
-//				pstmt.close();
-//				return false;
-//				
-//			}
-//			
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//			return false;
-//			
-//		} finally {
-//			/*
-//			try {
-//				
-//				//6. db 닫기
-//				conn.close();
-//				
-//			} catch (SQLException e) { e.printStackTrace(); }
-//			*/
-//		}
-//		
-//	}
 	
 }

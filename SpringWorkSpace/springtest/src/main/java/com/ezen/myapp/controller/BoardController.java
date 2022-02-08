@@ -89,6 +89,62 @@ public class BoardController {
 
 	}
 	
+	@RequestMapping(value="/board/boardModify.do")
+	public String boardModify(@RequestParam("bidx") String bidx, Model model) {
+
+		//1. 값 받기
+		//String bidx = request.getParameter("bidx");
+		System.out.println(bidx);
+		
+		//2. 데이터 가져오기
+		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
+		BoardVo  vo = bd.selectOneBoard(bidx); //글 보기
+		
+		//3. 결과 확인 후 화면 이동
+		if(vo != null) { //값이 비어있지 않으면
+			
+			//request에 값 담기
+			model.addAttribute("vo", vo);
+			
+			//3. 글목록 페이지로 이동 (foward) - url 내부이동
+			return "boardModify";
+			
+		} else {         //값이 비어있으면
+			
+			//글목록 페이지로 이동 (foward) - url 내부이동
+			return "boardList";
+			
+		}
+
+	}
+	
+	@RequestMapping(value="/board/boardModifyAction.do")
+	public String boardModifyAction(@RequestParam("bidx") String bidx, @RequestParam("subject") String subject, Model model) {
+		
+		/* boardContents.jsp 페이지로 이동 */
+		/* 글내용 뿌려주기 */
+		//1. 값 받기
+		//String bidx = request.getParameter("bidx");
+		System.out.println(bidx + ", " + subject);
+		
+		BoardVo vo = bd.boardModify(bidx,subject);
+		if(vo != null) {
+
+			//request에 값 담기
+			model.addAttribute("vo", vo);
+			
+			//수정 되었으면
+			return "boardContents";
+			
+		} else {
+			
+			//수정되지 않았으면
+			return "redirect:/index.jsp";
+			
+		}
+
+	}
+	
 	@RequestMapping(value="/board/boardDelete.do")
 	public String boardDelete(@RequestParam("bidx") String bidx) {
 		

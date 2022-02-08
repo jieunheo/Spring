@@ -23,7 +23,7 @@
 		<br>
 		<a href="<%=request.getContextPath()%>/index.jsp">메인으로</a>&emsp;
 		<a href="<%=request.getContextPath()%>/board/boardList.do">목록으로</a>&emsp;
-		<a href="<%=request.getContextPath()%>/board/boardModify.do">글수정</a>&emsp;
+		<a href="<%=request.getContextPath()%>/board/boardModify.do?bidx=${ vo.bidx }">글수정</a>&emsp;
 		<a href="<%=request.getContextPath()%>/board/boardDelete.do?bidx=${ vo.bidx }">글삭제</a>
 	</body>
 </html>

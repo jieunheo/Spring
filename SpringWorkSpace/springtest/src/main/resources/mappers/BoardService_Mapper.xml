@@ -18,6 +18,10 @@
 		SELECT * FROM boardtest WHERE bidx = #{bidx}
 	</select>
 	
+	<update id="boardModify" parameterType="String">
+		UPDATE boardtest SET subject = #{subject} WHERE bidx = #{bidx}
+	</update>
+	
 	<delete id="deleteBoard" parameterType="Integer">
 		DELETE FROM boardtest WHERE bidx = #{bidx}
 	</delete>
