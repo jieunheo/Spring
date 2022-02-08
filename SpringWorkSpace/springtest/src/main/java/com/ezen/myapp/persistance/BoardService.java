@@ -17,6 +17,6 @@ public interface BoardService {
 	public BoardVo selectOneBoard(String bidx);
 	
 	//글삭제
-	//public int deleteBoard(String bidx);
+	public int deleteBoard(int bidx);
 
 }

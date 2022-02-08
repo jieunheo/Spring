@@ -18,10 +18,8 @@
 		SELECT * FROM boardtest WHERE bidx = #{bidx}
 	</select>
 	
-	<!--
-	<delete id="deleteBoard" parameterType="String">
-		SELECT * FROM boardtest WHERE bidx = #{bidx}
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM boardtest WHERE bidx = #{bidx}
 	</delete>
-	-->
 
 </mapper>

@@ -205,24 +205,22 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 //	}
 	
 	/* DELETE */
-//	public boolean deleteBoard(String bidx) {
-//		
-//		boolean result = false;
-//		
-//		BoardVo vo = null;
-//		vo = selectOneBoard(bidx);
-//		
-//		if(vo != null) {
-//			
-//			BoardService bs = sqlSession.getMapper(BoardService.class);
-//			int value = bs.deleteBoard(bidx);
-//			
-//			if(value != 0) result = true;
-//		}
-//		
-//		return result;
-//		
-//	}
+	public int deleteBoard(String bidx) {
+		
+		int result = 0;
+		int bidx_int = Integer.parseInt(bidx);
+		
+		BoardVo vo = bs.selectOneBoard(bidx);
+		
+		if(vo != null) {
+			
+			if(bs.deleteBoard(bidx_int) != 0) result = bs.deleteBoard(bidx_int);
+			
+		}
+		
+		return result;
+		
+	}
 //	public boolean deleteBoard(String bidx) {
 //		
 //		//1. 값이 있는지 확인

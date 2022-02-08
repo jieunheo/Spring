@@ -89,30 +89,30 @@ public class BoardController {
 
 	}
 	
-//	@RequestMapping(value="/board/boardDelete.do")
-//	public String boardDelete(@RequestParam("bidx") String bidx) {
-//		
-//		/* 글 삭제 */
-//		//1. 값 받기
-//		//String bidx = request.getParameter("bidx");
-//		System.out.println("bidx: "+bidx);
-//		
-//		//2. 데이터 가져오기
-//		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
-//		
-//		//3. 결과에 따른 화면 이동
-//		if(bd.deleteBoard(bidx)) {
-//			
-//			//삭제 되었으면
-//			return "boardList";
-//			
-//		} else {
-//			
-//			//삭제되지 않았으면
-//			return "redirect:/index.jsp";
-//			
-//		}
-//		
-//	}
+	@RequestMapping(value="/board/boardDelete.do")
+	public String boardDelete(@RequestParam("bidx") String bidx) {
+		
+		/* 글 삭제 */
+		//1. 값 받기
+		//String bidx = request.getParameter("bidx");
+		System.out.println("bidx: "+bidx);
+		
+		//2. 데이터 가져오기
+		//bd = new BoardDao(); //@Autowired로 이미 객체 생성
+		
+		//3. 결과에 따른 화면 이동
+		if(bd.deleteBoard(bidx) != 0) {
+			
+			//삭제 되었으면
+			return "boardList";
+			
+		} else {
+			
+			//삭제되지 않았으면
+			return "redirect:/index.jsp";
+			
+		}
+		
+	}
 	
 }
