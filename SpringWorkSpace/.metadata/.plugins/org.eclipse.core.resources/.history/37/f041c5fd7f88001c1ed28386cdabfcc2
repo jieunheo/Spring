@@ -1,0 +1,26 @@
+package com.ezen.myapp.persistance;
+
+import java.util.ArrayList;
+
+import com.ezen.myapp.model.BoardVo;
+import com.ezen.myapp.model.MemberVo;
+
+/* 마이바트스용 메서드가 있는 곳 */
+public interface MemberService {
+
+	//회원 가입
+	//public int insertBoard(String subject);
+	
+	//회원 로그인
+	public MemberVo loginMember(String memberId, String memberPw);
+	
+	//회원 목록
+	public ArrayList<MemberVo> selectAllMember();
+	
+	//글보기
+	//public BoardVo selectOneBoard(String bidx);
+	
+	//글삭제
+	//public int deleteBoard(String bidx);
+
+}
