@@ -9,6 +9,7 @@
 	 --> 
 	<typeAliases>
 		<typeAlias alias="bv" type="com.ezen.myapp.model.BoardVo"/>
+		<typeAlias alias="mv" type="com.ezen.myapp.model.MemberVo"/>
 	</typeAliases>
 
 </configuration>

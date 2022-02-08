@@ -35,10 +35,8 @@ public class BoardController {
 		int exec = bd.insertBoard(subject); //글 추가
 		
 		//2. redirect: 를 이용하여 sendRedirect 실행
-		return "redirect:/index.jsp";
-		
-		//if(exec != 0) return "redirect:/index.jsp"; //url 외부이동
-		//else          return "boardWrite";          //url 내부이동
+		if(exec != 0) return "redirect:/index.jsp"; //url 외부이동
+		else          return "boardWrite";          //url 내부이동
 		
 	}
 	
@@ -92,12 +90,11 @@ public class BoardController {
 	}
 	
 //	@RequestMapping(value="/board/boardDelete.do")
-//	public String boardDelete(@RequestParam("vo") BoardVo vo) {
+//	public String boardDelete(@RequestParam("bidx") String bidx) {
 //		
 //		/* 글 삭제 */
 //		//1. 값 받기
 //		//String bidx = request.getParameter("bidx");
-//		String bidx = Integer.toString(vo.getBidx());
 //		System.out.println("bidx: "+bidx);
 //		
 //		//2. 데이터 가져오기

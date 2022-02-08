@@ -16,33 +16,30 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 	//Connection        conn;  //connection
 	PreparedStatement pstmt; //PreparedStatement
 	ResultSet         rs;    //ResultSet
+	BoardService      bs;
 
 	/* bean 객체로 등록된 클래스를 이곳으로 주입 */
-	@Autowired
-	SqlSessionTemplate sqlSession;
+	//@Autowired
+	//SqlSessionTemplate sqlSession;
 
-//	@Autowired
-//	public BoardDao(DriverManagerDataSource dataSource) {
-//
-//		System.out.println("dataSource: "+dataSource);
-//		
-//		//super(); //부모의 생성자를 실행. 기본값으로 생략되어 있음
-//		try {
-//			
-//			/* DB 연결 */	
-//			//외부에서 만들어진 데이터를 가져와 연결함
-//			conn = dataSource.getConnection(); //DB 연결
-//			
-//		} catch (SQLException e) { e.printStackTrace(); }
-//		
-//	}
+	@Autowired
+	public BoardDao(SqlSessionTemplate sqlSession) {
+
+		System.out.println("sqlSession: "+sqlSession);
+		
+		//super(); //부모의 생성자를 실행. 기본값으로 생략되어 있음
+		
+		/* DB 연결 */	
+		//외부에서 만들어진 데이터를 가져와 연결함
+		bs = sqlSession.getMapper(BoardService.class);
+		
+	}
 
 	
 	/* INSERT */
 	public int insertBoard(String subject) {
 		
 		/* mybatis용 메소드가 있는 인터페이스를 가져옴 */
-		BoardService bs = sqlSession.getMapper(BoardService.class);
 		int value = bs.insertBoard(subject);
 		
 		return value;
@@ -91,10 +88,7 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 	public ArrayList<BoardVo> selectAllBoard() {
 		
 		//1. 결과를 담을 변수 생성
-		ArrayList<BoardVo> alist = new ArrayList<BoardVo>();
-		
-		BoardService bs = sqlSession.getMapper(BoardService.class);
-		alist = bs.selectAllBoard();
+		ArrayList<BoardVo> alist = bs.selectAllBoard();
 		
 		return alist;
 		
@@ -157,10 +151,7 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 	/* SELECT */
 	public BoardVo selectOneBoard(String bidx) {
 		
-		BoardVo vo = new BoardVo();
-		
-		BoardService bs = sqlSession.getMapper(BoardService.class);
-		vo = bs.selectOneBoard(bidx);
+		BoardVo vo = bs.selectOneBoard(bidx);
 		
 		return vo;
 		
@@ -214,6 +205,24 @@ public class BoardDao /* extends Object //Object 상속. 기본값으로 생략�
 //	}
 	
 	/* DELETE */
+//	public boolean deleteBoard(String bidx) {
+//		
+//		boolean result = false;
+//		
+//		BoardVo vo = null;
+//		vo = selectOneBoard(bidx);
+//		
+//		if(vo != null) {
+//			
+//			BoardService bs = sqlSession.getMapper(BoardService.class);
+//			int value = bs.deleteBoard(bidx);
+//			
+//			if(value != 0) result = true;
+//		}
+//		
+//		return result;
+//		
+//	}
 //	public boolean deleteBoard(String bidx) {
 //		
 //		//1. 값이 있는지 확인
