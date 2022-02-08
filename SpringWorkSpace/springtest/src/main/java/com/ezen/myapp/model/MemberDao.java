@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ import com.ezen.myapp.persistance.MemberService;
 @Service("md")
 public class MemberDao {
 	
-	Connection        conn;  //connection
-	PreparedStatement pstmt; //PreparedStatement
-	ResultSet         rs;    //ResultSet
+	//Connection        conn;  //connection
+	//PreparedStatement pstmt; //PreparedStatement
+	//ResultSet         rs;    //ResultSet
 	
 	MemberService      ms;
 
@@ -111,7 +112,14 @@ public class MemberDao {
 	/* Login */
 	public MemberVo loginMember(String memberId, String memberPw) {
 		
-		MemberVo vo = ms.loginMember(memberId, memberPw);
+		//MemberVo vo = ms.loginMember(memberId, memberPw);
+		
+		//HashMap으로 넘기기
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("memberId", memberId);
+		hm.put("memberPw", memberPw);
+		
+		MemberVo vo = ms.loginMember(hm);
 		
 		return vo;
 		

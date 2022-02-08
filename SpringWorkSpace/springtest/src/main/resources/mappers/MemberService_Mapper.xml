@@ -10,7 +10,22 @@
 		INSERT INTO member(memberName, memberId, memberPw) VALUES(#{memberName},#{memberId},#{memberPw})
 	</insert>
 	
+	<!--
 	<select id="loginMember" parameterType="String" resultType="mv">
+		SELECT * FROM member WHERE memberId = #{memberId} AND memberPw = #{memberPw}
+	</select>
+	-->
+	<!--
+	@Param을 쓰지 않을 경우 인덱스 번호로 받아옴 
+	<select id="loginMember" parameterType="String" resultType="mv">
+		SELECT * FROM member WHERE memberId = #{0} AND memberPw = #{1}
+	</select>
+	-->
+	
+	<!--
+	HashMap을 사용하는 경우
+	-->
+	<select id="loginMember" parameterType="HashMap" resultType="mv">
 		SELECT * FROM member WHERE memberId = #{memberId} AND memberPw = #{memberPw}
 	</select>
 	

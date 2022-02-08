@@ -1,6 +1,7 @@
 package com.ezen.myapp.persistance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -14,6 +15,8 @@ public interface MemberService {
 	
 	//회원 로그인
 	public MemberVo loginMember(@Param("memberId") String memberId, @Param("memberPw") String memberPw);
+	//public MemberVo loginMember(String memberId, String memberPw);
+	public MemberVo loginMember(HashMap<String, Object> hm);
 	
 	//회원 목록
 	public ArrayList<MemberVo> selectAllMember();
