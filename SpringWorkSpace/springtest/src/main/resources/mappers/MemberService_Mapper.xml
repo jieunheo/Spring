@@ -11,6 +11,7 @@
 	</insert>
 	
 	<!--
+	@Param을 쓰는 경우 파라미터 이름으로 받아옴
 	<select id="loginMember" parameterType="String" resultType="mv">
 		SELECT * FROM member WHERE memberId = #{memberId} AND memberPw = #{memberPw}
 	</select>
