@@ -23,11 +23,22 @@
 	
 	<!-- 20220209 LoginInterceptor 객체 생성 -->
 	<beans:bean id="loginInterceptor" class="com.ezen.myapp.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="com.ezen.myapp.interceptor.AuthInterceptor"></beans:bean>
+	
 	<!-- Interceptor 등록 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/loginAction.do"/>
 			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/board/boardList.do"/>
+			<mapping path="/board/boardWrite.do"/>
+			<mapping path="/board/boardWriteAction.do"/>
+			<mapping path="/board/boardModify.do"/>
+			<mapping path="/board/boardModifyAction.do"/>
+			<mapping path="/board/boardDelete.do"/>
+			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
