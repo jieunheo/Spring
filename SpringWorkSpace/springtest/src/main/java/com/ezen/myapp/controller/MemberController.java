@@ -59,28 +59,31 @@ public class MemberController {
 	@RequestMapping(value="/member/loginAction.do")
 	public String loginAction(HttpServletRequest request,
 							@RequestParam("memberId") String memberId,
-							@RequestParam("memberPw") String memberPw) {
+							@RequestParam("memberPw") String memberPw,
+							Model model) {
 		
 		/* login 실행 */
 		//1. 값을 DB에서 확인(처리)
 		MemberVo  login = md.loginMember(memberId, memberPw); //login
+		model.addAttribute("login", login);
 
 		//2. 결과 확인 후 화면 이동
-		if(login != null) { //값이 있다면
-
-			//세션에 굽기
-			HttpSession session = request.getSession();
-			session.setAttribute("login", login);
-			
-			//url 외부이동
-			return "redirect:/index.jsp"; //url 외부이동
-			
-		} else {            //값이 없다면
-
-			//url 내부이동
-			return "memberLogin";
-			
-		}
+//		if(login != null) { //값이 있다면
+//
+//			//세션에 굽기
+//			HttpSession session = request.getSession();
+//			session.setAttribute("login", login);
+//			
+//			//url 외부이동
+//			return "redirect:/index.jsp"; //url 외부이동
+//			
+//		} else {            //값이 없다면
+//
+//			//url 내부이동
+//			return "memberLogin";
+//			
+//		}
+		return "redirect:/";
 		
 	}
 

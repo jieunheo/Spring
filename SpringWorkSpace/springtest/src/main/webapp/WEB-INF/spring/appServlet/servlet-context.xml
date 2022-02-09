@@ -21,6 +21,16 @@
 		<beans:property name="suffix" value=".jsp" />            <!-- 리턴값 뒤에 붙이는 텍스트 -->
 	</beans:bean>
 	
+	<!-- 20220209 LoginInterceptor 객체 생성 -->
+	<beans:bean id="loginInterceptor" class="com.ezen.myapp.interceptor.LoginInterceptor"></beans:bean>
+	<!-- Interceptor 등록 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/loginAction.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- 설정 내용 적용 범위 -->
 	<context:component-scan base-package="com.ezen.myapp" />
 	
